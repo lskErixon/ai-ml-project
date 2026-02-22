@@ -1,0 +1,38 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Admin – PID Collector</title>
+  </head>
+  <body>
+    <h1>Sběr dat (crawler)</h1>
+
+    <p><b>Dataset řádků (JSONL):</b> {{ rows }}</p>
+    <p><b>Default zastávky (config):</b> {{ default_names }}</p>
+
+    <form method="post" action="/admin/start">
+      <label>Délka sběru (min):</label>
+      <input type="number" name="minutes" value="10" min="1" max="240">
+
+      <br><br>
+      <label>Zastávka (volitelné, přepíše config):</label>
+      <input type="text" name="stop_name" placeholder="např. Karlovo náměstí">
+
+      <br><br>
+      <button type="submit">Spustit sběr</button>
+    </form>
+
+    <p id="status">Načítám status...</p>
+
+    <script>
+      async function refresh() {
+        const r = await fetch("/admin/status");
+        const s = await r.json();
+        document.getElementById("status").innerText =
+          s.running ? `BĚŽÍ (PID ${s.pid})` : "NEBĚŽÍ";
+      }
+      refresh();
+      setInterval(refresh, 3000);
+    </script>
+  </body>
+</html>
