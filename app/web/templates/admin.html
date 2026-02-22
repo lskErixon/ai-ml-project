@@ -3,26 +3,35 @@
   <head>
     <meta charset="utf-8">
     <title>Admin – PID Collector</title>
+
+    <link rel="stylesheet" href="style.css">
   </head>
   <body>
-    <h1>Sběr dat (crawler)</h1>
+    <div class="container">
+      <h1>Sběr dat (crawler)</h1>
 
-    <p><b>Dataset řádků (JSONL):</b> {{ rows }}</p>
-    <p><b>Default zastávky (config):</b> {{ default_names }}</p>
+      <div class="info">
+        <b>Dataset řádků (JSONL):</b> {{ rows }}
+      </div>
 
-    <form method="post" action="/admin/start">
-      <label>Délka sběru (min):</label>
-      <input type="number" name="minutes" value="10" min="1" max="240">
+      <div class="info">
+        <b>Default zastávky (config):</b> {{ default_names }}
+      </div>
 
-      <br><br>
-      <label>Zastávka (volitelné, přepíše config):</label>
-      <input type="text" name="stop_name" placeholder="např. Karlovo náměstí">
+      <form method="post" action="/admin/start">
+        <label>Délka sběru (min):</label>
+        <input type="number" name="minutes" value="10" min="1" max="240">
 
-      <br><br>
-      <button type="submit">Spustit sběr</button>
-    </form>
+        <br><br>
 
-    <p id="status">Načítám status...</p>
+        <label>Zastávka (volitelné, přepíše config):</label>
+        <input type="text" name="stop_name" placeholder="např. Karlovo náměstí">
+
+        <button type="submit">Spustit sběr</button>
+      </form>
+
+      <p id="status">Načítám status...</p>
+    </div>
 
     <script>
       async function refresh() {

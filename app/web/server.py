@@ -21,13 +21,11 @@ def _is_running(pid: int) -> bool:
     except OSError:
         return False
 
-
 def _count_jsonl_rows(path: str) -> int:
     if not os.path.exists(path):
         return 0
     with open(path, "r", encoding="utf-8") as f:
         return sum(1 for _ in f)
-
 
 @app.get("/admin")
 def admin():
@@ -36,7 +34,6 @@ def admin():
     rows = _count_jsonl_rows(dataset_path)
     default_names = ", ".join(cfg.get("default_names", []))
     return render_template("admin.html", rows=rows, default_names=default_names)
-
 
 @app.post("/admin/start")
 def admin_start():
@@ -81,3 +78,4 @@ def admin_status():
 
 if __name__ == "__main__":
     app.run(host="127.0.0.1", port=5000, debug=False)
+
