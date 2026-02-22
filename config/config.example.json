@@ -1,0 +1,11 @@
+{
+  "golemio_base_url": "https://api.golemio.cz",
+  "golemio_api_key": "PUT_YOUR_TOKEN_HERE",
+  "poll_seconds": 30,
+  "minutes_after": 60,
+  "limit": 20,
+  "preferred_timezone": "Europe/Prague",
+  "raw_dir": "data/raw",
+  "dataset_path": "data/dataset/departures.jsonl",
+  "default_names": ["I. P. Pavlova"]
+}
