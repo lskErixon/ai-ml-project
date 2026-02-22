@@ -1,0 +1,11 @@
+{
+  "golemio_base_url": "https://api.golemio.cz",
+  "golemio_api_key": "PUT_YOUR_TOKEN_HERE",
+  "asw_ids": ["539_1"],
+  "poll_seconds": 30,
+  "minutes_after": 60,
+  "limit": 20,
+  "preferred_timezone": "Europe/Prague",
+  "sqlite_path": "data/dataset.sqlite",
+  "raw_dir": "data/raw"
+}
