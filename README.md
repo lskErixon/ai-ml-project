@@ -30,6 +30,18 @@ The pipeline is designed in two layers:
 
 ---
 
+## Architecture Explanation
+
+The project is divided into several layers:
+
+- ApiClient — sends requests to the official Golemio PID API
+- Raw Store — saves original API responses for reproducibility and auditing
+- Normalizer — converts nested API responses into flat records
+- Dataset Store — appends normalized rows into departures.jsonl
+- Preprocessing — transforms raw records into ML-ready features
+- ML Model — learns historical delay patterns and predicts future delay
+---
+
 ## Built With
 
 * [![Python][Python.org]][Python-url]
