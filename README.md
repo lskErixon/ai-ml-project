@@ -29,6 +29,7 @@ The pipeline is designed in two layers:
 - easier preprocessing and feature engineering
 
 ---
+<img width="1536" height="1024" alt="ChatGPT Image 23 бер  2026 р , 12_55_39" src="https://github.com/user-attachments/assets/d5be259f-c40c-4aeb-bb2a-480d6074b7ee" />
 
 ## Architecture Explanation
 
