@@ -5,7 +5,7 @@ PID Delay Predictor is a Python project that collects real-world public transpor
 
 The long-term goal of the project is to train a machine learning model that can predict delays (e.g., "delay >= 3 minutes" or "how many minutes") based on historical data.
 
- **Current implementation: Phase 1 — Data Collection (Crawler + Web Button)**
+ **Current implementation: Phase 1 — Data Collection (Crawler)**
 
 ---
 
