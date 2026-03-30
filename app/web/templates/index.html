@@ -1,0 +1,95 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>PID Delay Predictor</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+  </head>
+  <body>
+    <div class="container">
+      <h1>PID Delay Predictor</h1>
+      <p class="subtitle">Estimate the expected delay of a public transport connection.</p>
+
+      <div class="result">
+        <h2>Quick presets</h2>
+
+        <label for="preset">Choose sample</label>
+        <select id="preset" onchange="fillPreset()">
+          <option value="">-- Select preset --</option>
+          <option value="ip_pavlova">I. P. Pavlova / Route 2</option>
+          <option value="karlovo">Karlovo náměstí / Route 9</option>
+        </select>
+      </div>
+
+      <form method="post" action="/">
+        <label for="stop_name">Stop name</label>
+        <input type="text" id="stop_name" name="stop_name" placeholder="e.g. I. P. Pavlova" required>
+
+        <label for="route_num">Route number</label>
+        <input type="number" id="route_num" name="route_num" placeholder="e.g. 22" required>
+
+        <label for="platform">Platform</label>
+        <input type="text" id="platform" name="platform" placeholder="e.g. A" required>
+
+        <label for="headsign">Headsign</label>
+        <input type="text" id="headsign" name="headsign" placeholder="e.g. Nádraží Braník" required>
+
+        <label for="hour">Hour</label>
+        <input type="number" id="hour" name="hour" min="0" max="23" placeholder="0-23" required>
+
+        <label for="minute">Minute</label>
+        <input type="number" id="minute" name="minute" min="0" max="59" placeholder="0-59" required>
+
+        <label for="day_of_week">Day of week</label>
+        <input type="number" id="day_of_week" name="day_of_week" min="0" max="6" placeholder="0 = Monday, 6 = Sunday" required>
+
+        <button type="submit">Predict Delay</button>
+      </form>
+
+      {% if prediction is not none %}
+        <div class="result">
+          <h2>Prediction Result</h2>
+          <p><strong>Predicted delay:</strong> {{ prediction }} min</p>
+        </div>
+      {% endif %}
+
+      {% if mae is not none and mse is not none %}
+        <div class="result">
+          <h2>Model Metrics</h2>
+          <p><strong>MAE:</strong> {{ mae }}</p>
+          <p><strong>MSE:</strong> {{ mse }}</p>
+        </div>
+      {% endif %}
+
+      <div class="nav-links">
+        <a href="/admin">Go to Admin / Crawler</a>
+      </div>
+    </div>
+
+    <script>
+      function fillPreset() {
+        const preset = document.getElementById("preset").value;
+
+        if (preset === "ip_pavlova") {
+          document.getElementById("stop_name").value = "I. P. Pavlova";
+          document.getElementById("route_num").value = "2";
+          document.getElementById("platform").value = "A";
+          document.getElementById("headsign").value = "Nádraží Braník";
+          document.getElementById("hour").value = "9";
+          document.getElementById("minute").value = "13";
+          document.getElementById("day_of_week").value = "0";
+        }
+
+        if (preset === "karlovo") {
+          document.getElementById("stop_name").value = "Karlovo náměstí";
+          document.getElementById("route_num").value = "9";
+          document.getElementById("platform").value = "A";
+          document.getElementById("headsign").value = "Spojovací";
+          document.getElementById("hour").value = "9";
+          document.getElementById("minute").value = "2";
+          document.getElementById("day_of_week").value = "0";
+        }
+      }
+    </script>
+  </body>
+</html>

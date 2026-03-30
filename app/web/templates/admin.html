@@ -1,0 +1,44 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Admin – PID Collector</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+  </head>
+  <body>
+    <div class="container">
+      <h1>Data Collection (Crawler)</h1>
+
+      <div class="info">
+        <strong>Dataset rows:</strong> {{ rows }}
+      </div>
+
+      <div class="info">
+        <strong>Default stops:</strong> {{ default_names }}
+      </div>
+
+      <div class="info">
+        <strong>Status:</strong>
+        {% if running %}
+          <span style="color: green;">RUNNING (PID {{ pid }})</span>
+        {% else %}
+          <span style="color: red;">STOPPED</span>
+        {% endif %}
+      </div>
+
+      <form method="post" action="/admin/start">
+        <label>Duration (minutes)</label>
+        <input type="number" name="minutes" value="10" min="1" max="240">
+
+        <label>Stop name (optional)</label>
+        <input type="text" name="stop_name" placeholder="e.g. I. P. Pavlova">
+
+        <button type="submit">Start Collection</button>
+      </form>
+
+      <div class="nav-links">
+        <a href="/">Back to Prediction</a>
+      </div>
+    </div>
+  </body>
+</html>
