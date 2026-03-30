@@ -1,5 +1,46 @@
 # PID Delay Predictor
 
+## Installation & Setup
+
+Follow these steps to run the project locally on any machine (e.g. school PC).
+
+### 1. Clone the repository
+
+```bash
+git clone https://github.com/your-username/your-repo-name.git
+cd pid_delay_predictor
+```
+
+Make sure Python 3.10+ is installed:
+```bash
+python3 --version
+```
+
+Install dependencies
+```bash
+pip3 install -r requirements.txt
+```
+
+Then open config/config.json and insert your Golemio API key:
+```
+{
+  "golemio_api_key": "YOUR_API_KEY_HERE"
+}
+```
+---
+
+-collector/ → sbírá data
+-preprocess.py → připravuje data
+-train.py → učí model
+-predict.py → dělá predikci
+-web → uživatel to vidí
+
+## Run App
+```
+python3 app/web/server.py
+```
+---
+
 ## Overview
 PID Delay Predictor is a Python project that collects real-world public transport departure and delay data from Prague Integrated Transport (PID) using the official Golemio API.
 
